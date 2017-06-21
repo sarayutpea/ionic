@@ -13,12 +13,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'contact.html',
 })
 export class ContactPage {
+  companyName:string = '';
+  companyWebsite:string = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
+    this.companyName = this.navParams.get('companyName');
+    this.companyWebsite = this.navParams.get('companyWebsite');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactPage');
+    console.log(this.companyName);
+    console.log(this.companyWebsite);
   }
 
 }
