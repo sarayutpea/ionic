@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 // import 'rxjs/Rx'; // import ทุกอย่างของ Rxjs
 import { Item } from '../../models/item';
@@ -21,8 +23,13 @@ export class CoursesProvider {
 
   public getCourses():Observable<Item[]>{
     let data:any = this.http.get('https://codingthailand.com/api/get_courses.php')
-          .map((res:Response) => <Item[]>res.json());
+          .map((res:Response) => <Item[]>res.json())
+          .catch(this.handleError);
 
     return data;
+  }
+
+  private handleError(error:any){
+    return Observable.throw(error.json().errorMessage || 'เกิดข้อผิดพลาดจาก Server');
   }
 }

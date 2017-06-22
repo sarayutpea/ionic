@@ -14,5 +14,8 @@
 
 
 <ion-content padding>
-
+  <div *ngFor="let course of courses">
+    <h3>{{ course.c_title }}</h3>
+    <p>{{ course.c_detail }}</p>
+  </div>
 </ion-content>
