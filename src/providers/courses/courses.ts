@@ -6,6 +6,7 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 // import 'rxjs/Rx'; // import ทุกอย่างของ Rxjs
 import { Item } from '../../models/item';
+import { ItemDetail } from '../../models/item-detail';
 
 /*
   Generated class for the CoursesProvider provider.
@@ -27,6 +28,11 @@ export class CoursesProvider {
           .catch(this.handleError);
 
     return data;
+  }
+
+  public getCourseDetail(id:any):Observable<ItemDetail[]>{
+    let detail:any = this.http.get(`https://codingthailand.com/api/get_course_detail.php?course_id=${id}`).map((response:Response) => <ItemDetail>response.json()).catch(this.handleError);
+    return detail;
   }
 
   private handleError(error:any){

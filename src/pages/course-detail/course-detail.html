@@ -1,0 +1,22 @@
+<!--
+  Generated template for the CourseDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>courseDetail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<div *ngFor="let course of courseDetail">
+  <h1>{{ course.ch_title }}</h1>
+  <p>ความยาว {{ course.ch_timetotal }} นาที</p>
+  <a ion-link href="https://www.youtube.com/watch?v={{ course.ch_url }}">Wacth now</a>
+</div>
+</ion-content>

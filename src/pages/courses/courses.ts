@@ -5,6 +5,8 @@ import { Item } from '../../models/item';
 import { CoursesProvider } from '../../providers/courses/courses';
 
 import { Subscription } from 'rxjs/Subscription';
+
+import { CourseDetailPage } from '../../pages/course-detail/course-detail';
 /**
  * Generated class for the CoursesPage page.
  *
@@ -31,6 +33,10 @@ export class CoursesPage {
                                               (error) => this.errorMessage = <any>error,
                                               () => console.log('Completed')
                                             );
+  }
+
+  getCourseDetail(id:any):void{
+    this.navCtrl.push(CourseDetailPage,{id:id});
   }
 
   ionViewWillEnter() {

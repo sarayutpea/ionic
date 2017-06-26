@@ -11,6 +11,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { TabPage } from '../pages/tab/tab';
 import { MapPage } from '../pages/map/map';
 import { CoursesPage } from '../pages/courses/courses';
+import { CourseDetailPage } from '../pages/course-detail/course-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +27,8 @@ import { CoursesProvider } from '../providers/courses/courses';
     ContactPage,
     TabPage,
     MapPage,
-    CoursesPage
+    CoursesPage,
+    CourseDetailPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { CoursesProvider } from '../providers/courses/courses';
     ContactPage,
     TabPage,
     MapPage,
-    CoursesPage
+    CoursesPage,
+    CourseDetailPage
   ],
   providers: [
     StatusBar,

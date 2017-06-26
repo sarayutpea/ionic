@@ -17,5 +17,6 @@
   <div *ngFor="let course of courses">
     <h3>{{ course.c_title }}</h3>
     <p>{{ course.c_detail }}</p>
+    <button ion-button type="button" (click)="getCourseDetail(course.id)" >Show</button>
   </div>
 </ion-content>
