@@ -9,6 +9,12 @@
   <ion-navbar>
     <ion-title>courses</ion-title>
   </ion-navbar>
+  <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
 
 </ion-header>
 

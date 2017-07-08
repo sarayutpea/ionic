@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { CoursesProvider } from '../../providers/courses/courses';
@@ -22,20 +22,43 @@ export class CoursesPage {
   courses:Item[];
   subscription:Subscription;
   errorMessage:string;
+  loading:any;
 
-  constructor(private navCtrl: NavController, public navParams: NavParams, private coursesProvider:CoursesProvider) {
+  constructor(
+    private navCtrl: NavController, 
+    public navParams: NavParams, 
+    private coursesProvider:CoursesProvider, 
+    private loadingController:LoadingController
+    ) {
     
   }
 
-  getCourses(){
+  // private presentLoadingDefault(){
+  //   let loading = this.loadingController.create({
+  //     content: 'Please wait...'
+  //   });
+
+  //   loading.present();
+
+  //   // setTimeout(() => {
+  //   //   this.loading.dismiss();
+  //   // }, 5000);
+
+  // }
+
+  private getCourses(){
+    this.loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
     return this.coursesProvider.getCourses().subscribe(
                                               (res) => this.courses = res, 
                                               (error) => this.errorMessage = <any>error,
-                                              () => console.log('Completed')
+                                              () => this.loading.dismiss()
                                             );
   }
 
-  getCourseDetail(id:any):void{
+  private getCourseDetail(id:any):void{
     this.navCtrl.push(CourseDetailPage,{id:id});
   }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-angular';
 import { CoursesProvider } from '../../providers/courses/courses';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -22,8 +22,14 @@ export class CourseDetailPage {
   errorMessage:string;
 
   subscription:Subscription;
+  loading:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public coursesProvider:CoursesProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public coursesProvider:CoursesProvider, 
+    private loadingController:LoadingController
+    ) {
   }
 
   ionViewDidLoad() {
@@ -39,10 +45,16 @@ export class CourseDetailPage {
   }
 
   getCourseDetail(id:any){
+    this.loading = this.loadingController.create({
+      spinner: 'bubbles',
+      content:'please wait'
+    });
+
+    this.loading.present();
     return this.coursesProvider.getCourseDetail(id).subscribe(
                                                     (res) => this.courseDetail = res, 
                                                     (error) => this.errorMessage = <any>error, 
-                                                    () => console.log('Load Completed!')
+                                                    () => this.loading.dismiss()
                                                   );
   }
 
